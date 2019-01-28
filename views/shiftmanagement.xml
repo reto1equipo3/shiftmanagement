@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<!-- top level menu -->
+		<menuitem id="main_shiftmanagement_menu"
+				  name ="Shift Management"/>
+		<!-- left side menu -->
+		<menuitem id="shiftmanagement_menu"
+				  name="Shift Management"
+				  parent="main_shiftmanagement_menu"/>
+		<!-- shifts window action -->
+		<record model="ir.actions.act_window" 
+				id="shift_list_action">
+			<field name="name">Shifts</field>
+			<field name="res_model">shiftmanagement.shift</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Create a shift
+				</p>
+			</field>
+		</record>
+		<!-- Zone window action -->
+		<record model="ir.actions.act_window" 
+				id="zone_list_action">
+			<field name="name">Zone</field>
+			<field name="res_model">shiftmanagement.zone</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- left side menu submenuitems -->
+		<menuitem id="shifts_menu"
+				  name="Shifts"
+				  parent="shiftmanagement_menu"
+				  action="shift_list_action"/>
+		<menuitem id="zone_menu"
+				  name="Zones"
+				  parent="shiftmanagement_menu"
+				  action="zone_list_action"/>
+
+		<!-- shift form action -->
+		<record model="ir.ui.view" id="shift_form_view">
+			<field name="name">shift.form</field>
+			<field name="model">shiftmanagement.shift</field>
+			<field name="arch" type="xml">
+				<form string="Shift Form">
+					<sheet>
+						<group>
+							<field name="init_date"/>
+							<field name="end_date"/>
+							<field name="zone" />
+							<field name="employees"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- shift search action -->
+		<record model="ir.ui.view" id="shift_search_view">
+			<field name="name">shiftmanagement.search</field>
+			<field name="model">shiftmanagement.shift</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="employees"/>
+					<field name="zone"/>
+				</search>
+			</field>
+		</record>
+		
+		<!-- Zones -->
+		<record model="shiftmanagement.zone" id="almacen">
+			<field name="name">Almacen</field>
+		</record>
+		<record model="shiftmanagement.zone" id="caja">
+			<field name="name">Caja</field>
+		</record>
+
+	</data>
+</odoo>
