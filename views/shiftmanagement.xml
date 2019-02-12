@@ -78,5 +78,20 @@
 			<field name="name">Caja</field>
 		</record>
 
+		<!-- Herencia de vistas: Users -->
+		<record model="ir.ui.view" id="employee_res_users_form">
+			<field name="name">employee.elegible</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form"></field>
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Shift Management">
+						<group string="Turnos">
+							<field string="Asignable" name="asignable"/>
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
 	</data>
 </odoo>
